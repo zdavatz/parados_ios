@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AFAAB5AF59D0FF852C474C3 /* WebViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03C79D41164D05BBA101DD /* WebViewStore.swift */; };
+		159853B13C973B033AE73597 /* GameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFFA04B6310752AA0112E47 /* GameRepository.swift */; };
+		1C35B1B0EA515248D76B626F /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C09C56B4C303871B70B911 /* GameCardView.swift */; };
+		2A39831BCCAE91030061FCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BD88EFB006CD0A0BBE851C /* Assets.xcassets */; };
+		439C4760282B9989ACA2C72A /* GameWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE754F8D592B4CCBC29FCFB /* GameWebView.swift */; };
+		4DBCFEB5F7DDE47E8D77D07A /* ParadosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A75698389AAEFF0C7574A /* ParadosApp.swift */; };
+		6B7EC3421975B60D62E0E64B /* Games in Resources */ = {isa = PBXBuildFile; fileRef = 1690E84509AA92146CDDA408 /* Games */; };
+		D1949BB6D0C128D3336B4704 /* GameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B8AF211CB45D99EE3AB40B /* GameListView.swift */; };
+		DB78D3148FEB2BC177FECECD /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5ECE5BAF037039B5E36EC /* GameInfo.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0B1D41302EF64AE5BCF287D4 /* Parados.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Parados.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE754F8D592B4CCBC29FCFB /* GameWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWebView.swift; sourceTree = "<group>"; };
+		1690E84509AA92146CDDA408 /* Games */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Games; path = Parados/Resources/Games; sourceTree = SOURCE_ROOT; };
+		3679DB6BE01C9FB18C6E866F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		448A75698389AAEFF0C7574A /* ParadosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParadosApp.swift; sourceTree = "<group>"; };
+		48D5ECE5BAF037039B5E36EC /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		54C09C56B4C303871B70B911 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
+		76B8AF211CB45D99EE3AB40B /* GameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListView.swift; sourceTree = "<group>"; };
+		7EFFA04B6310752AA0112E47 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
+		BE03C79D41164D05BBA101DD /* WebViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewStore.swift; sourceTree = "<group>"; };
+		F7BD88EFB006CD0A0BBE851C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7B4B99A8947128A23DF639FF /* Parados */ = {
+			isa = PBXGroup;
+			children = (
+				F7BD88EFB006CD0A0BBE851C /* Assets.xcassets */,
+				3679DB6BE01C9FB18C6E866F /* Info.plist */,
+				448A75698389AAEFF0C7574A /* ParadosApp.swift */,
+				F156DA26120A4FD6510E4E75 /* Models */,
+				C5E44FBC72C2062AA19AE78E /* Services */,
+				C60565131A1F165D27965288 /* Views */,
+			);
+			path = Parados;
+			sourceTree = "<group>";
+		};
+		95354FE2FAA60DDB451934D6 = {
+			isa = PBXGroup;
+			children = (
+				1690E84509AA92146CDDA408 /* Games */,
+				7B4B99A8947128A23DF639FF /* Parados */,
+				EC043919D142DB51597F4C18 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C5E44FBC72C2062AA19AE78E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7EFFA04B6310752AA0112E47 /* GameRepository.swift */,
+				BE03C79D41164D05BBA101DD /* WebViewStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C60565131A1F165D27965288 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				54C09C56B4C303871B70B911 /* GameCardView.swift */,
+				76B8AF211CB45D99EE3AB40B /* GameListView.swift */,
+				0CE754F8D592B4CCBC29FCFB /* GameWebView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC043919D142DB51597F4C18 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B1D41302EF64AE5BCF287D4 /* Parados.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F156DA26120A4FD6510E4E75 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				48D5ECE5BAF037039B5E36EC /* GameInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		"TEMP_FDD9E624-9E9C-4AF0-90E0-30CC7168203C" /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7C121A7D9D07A0DDC2590394 /* Parados */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C1529BF0D33BB022FEDA52C /* Build configuration list for PBXNativeTarget "Parados" */;
+			buildPhases = (
+				A0E65EC47BD9999CFAA33FE5 /* Sources */,
+				E8815EDD2F6B8994C94AB500 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Parados;
+			packageProductDependencies = (
+			);
+			productName = Parados;
+			productReference = 0B1D41302EF64AE5BCF287D4 /* Parados.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72E73486575CA82BFA95551C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					7C121A7D9D07A0DDC2590394 = {
+						DevelopmentTeam = 4B37356EGR;
+					};
+				};
+			};
+			buildConfigurationList = 8D7A200043C17A00430D408B /* Build configuration list for PBXProject "Parados" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 95354FE2FAA60DDB451934D6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EC043919D142DB51597F4C18 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7C121A7D9D07A0DDC2590394 /* Parados */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8815EDD2F6B8994C94AB500 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A39831BCCAE91030061FCC8 /* Assets.xcassets in Resources */,
+				6B7EC3421975B60D62E0E64B /* Games in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0E65EC47BD9999CFAA33FE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C35B1B0EA515248D76B626F /* GameCardView.swift in Sources */,
+				DB78D3148FEB2BC177FECECD /* GameInfo.swift in Sources */,
+				D1949BB6D0C128D3336B4704 /* GameListView.swift in Sources */,
+				159853B13C973B033AE73597 /* GameRepository.swift in Sources */,
+				439C4760282B9989ACA2C72A /* GameWebView.swift in Sources */,
+				4DBCFEB5F7DDE47E8D77D07A /* ParadosApp.swift in Sources */,
+				0AFAAB5AF59D0FF852C474C3 /* WebViewStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		311C84EFB23EE9EC170939A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Parados/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ywesee.parados;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4689475A2DB287FA3A23C973 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Parados/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ywesee.parados;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		51732A068C8A0369A15175D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4B37356EGR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		7F80BB1D8CDC63DFD55920BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4B37356EGR;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5C1529BF0D33BB022FEDA52C /* Build configuration list for PBXNativeTarget "Parados" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4689475A2DB287FA3A23C973 /* Debug */,
+				311C84EFB23EE9EC170939A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8D7A200043C17A00430D408B /* Build configuration list for PBXProject "Parados" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F80BB1D8CDC63DFD55920BA /* Debug */,
+				51732A068C8A0369A15175D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72E73486575CA82BFA95551C /* Project object */;
+}

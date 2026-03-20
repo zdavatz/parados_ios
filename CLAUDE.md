@@ -45,7 +45,7 @@ Key files:
 
 ## Game Assets
 
-16 HTML game files + 1 CSV in `Parados/Resources/Games/` (bundled as folder reference). Games are self-contained HTML/JavaScript — all game logic lives in the HTML files, not in Swift code. Games are also downloadable from `https://raw.githubusercontent.com/zdavatz/parados/main/`.
+17 HTML game files + 1 CSV in `Parados/Resources/Games/` (bundled as folder reference). Games are self-contained HTML/JavaScript — all game logic lives in the HTML files, not in Swift code. Games are also downloadable from `https://raw.githubusercontent.com/zdavatz/parados/main/`.
 
 ## Design
 

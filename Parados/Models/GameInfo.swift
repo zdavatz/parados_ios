@@ -57,12 +57,13 @@ struct GameInfo: Identifiable {
                 description: "Many turns are offensive AND defensive and each one may have long term consequences! It's connect 4, but with 6 colours. Your colour is always loyal to you, your opponent's never is... and the other 4? Sometimes they are, and sometimes they aren't. Tiles can even be loyal in one direction, AND disloyal in another! Not for the faint of heart...."
             ),
             GameInfo(
-                filename: "democracy_remote.html",
+                filename: "democracy.html",
                 title: "Democracy in Space",
-                players: "2+ Players · Remote Multiplayer",
+                players: "2+ Players · Strategy",
                 description: "Based on the concept of the US Electoral College (parliamentary systems also have it). Area majority culled to its essence. A gentle opening suddenly transforms into a nail biting race to the finish! The tie breaker condition needs to be kept in mind, but you won't know for a while if you'll need it this time....",
                 variants: [
-                    GameVariant(filename: "democracy_remote.html", label: "Play", url: "https://game.ywesee.com/parados/democracy_remote.html")
+                    GameVariant(filename: "democracy.html", label: "Play"),
+                    GameVariant(filename: "democracy_remote.html", label: "Remote", url: "https://game.ywesee.com/parados/democracy_remote.html")
                 ]
             ),
             GameInfo(
@@ -88,7 +89,7 @@ struct GameInfo: Identifiable {
                 players: "2 Players · Strategy",
                 description: "It's the first turn and the battle is on! No time to get warmed up in MakaLaina:-) You need to be planning from the get go, evolving your long term strategy — but staying flexible. The constant influx of new discs means that even a small shift can have consequences...",
                 variants: [
-                    GameVariant(filename: "makalaina.html", label: "Local"),
+                    GameVariant(filename: "makalaina.html", label: "Play"),
                     GameVariant(filename: "makalaina_remote.html", label: "Remote", url: "https://game.ywesee.com/parados/makalaina_remote.html")
                 ]
             )
@@ -101,7 +102,7 @@ struct GameInfo: Identifiable {
         "kangaroo_cn.html", "kangaroo_ua.html",
         "capovolto.html",
         "divided_loyalties.html",
-        "democracy_remote.html",
+        "democracy.html", "democracy_remote.html",
         "frankenstein.html",
         "rainbow_blackjack.html", "rainbow_blackjack_en.html",
         "rainbow_blackjack_remote.html",

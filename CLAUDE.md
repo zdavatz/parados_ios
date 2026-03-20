@@ -36,11 +36,11 @@ SwiftUI app with 2 screens, no third-party dependencies:
 - **WebViewStore** → Singleton cache that keeps WKWebView instances alive per game, so game state is preserved when navigating back to the menu and returning.
 
 Key files:
-- `Parados/Models/GameInfo.swift` — Game metadata, variant definitions, and list of all filenames for GitHub sync
+- `Parados/Models/GameInfo.swift` — Game metadata, variant definitions (with optional `url` for remote play via Safari), and list of all filenames for GitHub sync
 - `Parados/Services/GameRepository.swift` — Copies bundled games from app bundle to Documents on first launch, handles GitHub updates
 - `Parados/Services/WebViewStore.swift` — Caches WKWebView instances per game filename to preserve game state
 - `Parados/Views/GameListView.swift` — Main screen with game cards + Color hex extension
-- `Parados/Views/GameCardView.swift` — Card component with colored variant buttons
+- `Parados/Views/GameCardView.swift` — Card component with colored variant buttons; variants with `url` open in Safari
 - `Parados/Views/GameWebView.swift` — WKWebView wrapper with gesture handling
 
 ## Game Assets

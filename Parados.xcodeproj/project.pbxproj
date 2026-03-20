@@ -90,7 +90,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		"TEMP_FDD9E624-9E9C-4AF0-90E0-30CC7168203C" /* Resources */ = {
+		"TEMP_46289863-F858-4821-B9F8-AE564F6AFDE0" /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 			);

@@ -4,6 +4,7 @@ struct GameCardView: View {
     let game: GameInfo
     let buttonColors: [Color]
     let onGameSelected: (String) -> Void
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -31,7 +32,11 @@ struct GameCardView: View {
                             label: variant.label,
                             color: buttonColors[index % buttonColors.count]
                         ) {
-                            onGameSelected(variant.filename)
+                            if let urlString = variant.url, let url = URL(string: urlString) {
+                                openURL(url)
+                            } else {
+                                onGameSelected(variant.filename)
+                            }
                         }
                     }
                 }

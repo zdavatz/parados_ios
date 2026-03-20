@@ -14,6 +14,24 @@ Parados Games for iOS — a collection of HTML/JavaScript board games in a nativ
 
 Remote multiplayer variants open in Safari for cross-device play.
 
+## Screenshots
+
+| Game List (top) | Game List (bottom) | MAKA LAINA |
+|---|---|---|
+| ![Game List Top](Screenshots/01_game_list_top.png) | ![Game List Bottom](Screenshots/02_game_list_bottom.png) | ![MAKA LAINA](Screenshots/03_game_list_maka.png) |
+
+| Kangaroo | Kangaroo Game | Capovolto |
+|---|---|---|
+| ![Kangaroo](Screenshots/03_kangaroo.png) | ![Kangaroo Game](Screenshots/04_kangaroo_game.png) | ![Capovolto](Screenshots/04_capovolto.png) |
+
+| Frankenstein | Frankenstein Game | Rainbow Blackjack |
+|---|---|---|
+| ![Frankenstein](Screenshots/05_frankenstein.png) | ![Frankenstein Game](Screenshots/06_frankenstein_game.png) | ![Rainbow Blackjack](Screenshots/06_rainbow_blackjack.png) |
+
+| iPad Game List |
+|---|
+| ![iPad](Screenshots/ipad_01_game_list.png) |
+
 ## Requirements
 
 - iOS 16.0+

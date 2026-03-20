@@ -47,6 +47,10 @@ Key files:
 
 17 HTML game files + 1 CSV in `Parados/Resources/Games/` (bundled as folder reference). Games are self-contained HTML/JavaScript — all game logic lives in the HTML files, not in Swift code. Games are also downloadable from `https://raw.githubusercontent.com/zdavatz/parados/main/`.
 
+## Screenshots
+
+App screenshots are in the `Screenshots/` directory, showing game list views, individual games, and iPad layout.
+
 ## Design
 
 Dark theme: background `#263238`, cards `#37474F`, gold accent `#FFD700`, button colors cycle through green/blue/orange/red/purple. Kangaroo app icon on cream background.

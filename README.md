@@ -12,7 +12,7 @@ Parados Games for iOS — a collection of HTML/JavaScript board games in a nativ
 - **Rainbow Blackjack** (2 Players, Strategy) — Deutsch, English, Remote
 - **MAKA LAINA** (2 Players, Strategy) — Play, Remote
 
-Remote multiplayer variants open in Safari for cross-device play.
+Remote multiplayer variants open in Safari via `https://game.ywesee.com/parados/` for cross-device PeerJS networking. If remote games show a black page in Safari, clear the Safari cache for `game.ywesee.com` (Settings > Safari > Advanced > Website Data).
 
 ## Screenshots
 

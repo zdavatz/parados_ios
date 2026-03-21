@@ -40,7 +40,7 @@ Key files:
 - `Parados/Services/GameRepository.swift` — Copies bundled games from app bundle to Documents on first launch, handles GitHub updates
 - `Parados/Services/WebViewStore.swift` — Caches WKWebView instances per game filename to preserve game state
 - `Parados/Views/GameListView.swift` — Main screen with game cards + Color hex extension
-- `Parados/Views/GameCardView.swift` — Card component with colored variant buttons; variants with `url` open in Safari
+- `Parados/Views/GameCardView.swift` — Card component with colored variant buttons; variants with `url` open in Safari via `https://game.ywesee.com/parados/`
 - `Parados/Views/GameWebView.swift` — WKWebView wrapper with gesture handling
 
 ## Game Assets
@@ -54,3 +54,7 @@ App screenshots are in the `Screenshots/` directory, showing game list views, in
 ## Design
 
 Dark theme: background `#263238`, cards `#37474F`, gold accent `#FFD700`, button colors cycle through green/blue/orange/red/purple. Kangaroo app icon on cream background.
+
+## Troubleshooting
+
+- **Remote games show black page in Safari**: Clear Safari cache for `game.ywesee.com` (Settings > Safari > Advanced > Website Data). The remote HTML files use PeerJS from CDN (`unpkg.com`, `cdnjs.cloudflare.com`) and Safari may cache stale versions.

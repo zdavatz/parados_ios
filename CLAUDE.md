@@ -55,6 +55,12 @@ App screenshots are in the `Screenshots/` directory, showing game list views, in
 
 Dark theme: background `#263238`, cards `#37474F`, gold accent `#FFD700`, button colors cycle through green/blue/orange/red/purple. Kangaroo app icon on cream background.
 
+## App Store Review
+
+Apple guideline 4.7.4 requires an index of non-embedded games submitted with each review. All games are bundled in the binary; only 3 remote multiplayer variants load external URLs (`democracy_remote.html`, `rainbow_blackjack_remote.html`, `makalaina_remote.html` via `https://game.ywesee.com/parados/`). The index must be included in the **Review Notes** field in App Store Connect for every submission. Developer for all games: Think Ahead Games / ywesee GmbH.
+
+Apple guideline 2.1(a) requires the App Store description to list all games with descriptions. See README.md for the full game descriptions.
+
 ## Troubleshooting
 
 - **Remote games show black page in Safari**: Clear Safari cache for `game.ywesee.com` (Settings > Safari > Advanced > Website Data). The remote HTML files use PeerJS from CDN (`unpkg.com`, `cdnjs.cloudflare.com`) and Safari may cache stale versions.

@@ -57,6 +57,10 @@ Apple guideline 4.7.4 requires an index of non-embedded games. All games are bun
 ```bash
 xcodegen generate
 open Parados.xcodeproj
+
+# Pure CLI: archive and upload to App Store Connect
+xcodebuild -scheme Parados -destination 'generic/platform=iOS' -allowProvisioningUpdates archive -archivePath /tmp/Parados.xcarchive
+xcodebuild -exportArchive -archivePath /tmp/Parados.xcarchive -exportPath /tmp/ParadosUpload -exportOptionsPlist exportOptions.plist -allowProvisioningUpdates
 ```
 
 ## License

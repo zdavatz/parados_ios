@@ -18,8 +18,21 @@ xcodegen generate
 xcodebuild -scheme Parados -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build
 
 # Build and install on device
-xcodebuild -scheme Parados -destination 'id=DEVICE_ID' -allowProvisioningUpdates build
+xcodebuild -scheme Parados -destination 'generic/platform=iOS' -allowProvisioningUpdates build
 xcrun devicectl device install app --device DEVICE_ID path/to/Parados.app
+
+# Archive and upload to App Store Connect (pure CLI, no Xcode GUI needed)
+xcodebuild -scheme Parados -destination 'generic/platform=iOS' -allowProvisioningUpdates archive -archivePath /tmp/Parados.xcarchive
+xcodebuild -exportArchive -archivePath /tmp/Parados.xcarchive -exportPath /tmp/ParadosUpload -exportOptionsPlist /tmp/exportOptions.plist -allowProvisioningUpdates
+
+# exportOptions.plist for App Store upload:
+# <?xml version="1.0" encoding="UTF-8"?>
+# <plist version="1.0"><dict>
+#   <key>method</key><string>app-store-connect</string>
+#   <key>destination</key><string>upload</string>
+#   <key>teamID</key><string>4B37356EGR</string>
+#   <key>uploadSymbols</key><true/>
+# </dict></plist>
 
 # Open in Xcode
 open Parados.xcodeproj

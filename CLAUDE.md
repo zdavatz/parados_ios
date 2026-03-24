@@ -38,7 +38,7 @@ SwiftUI app with 2 screens, no third-party dependencies:
 Key files:
 - `Parados/Models/GameInfo.swift` — Game metadata, variant definitions (with optional `url` for remote play via Safari), and list of all filenames for GitHub sync
 - `Parados/Services/GameRepository.swift` — Copies bundled games from app bundle to Documents on first launch, handles GitHub updates
-- `Parados/Services/WebViewStore.swift` — Caches WKWebView instances per game filename to preserve game state
+- `Parados/Services/WebViewStore.swift` — Caches WKWebView instances per game filename to preserve game state; includes `WebViewBridge` for CSV export (share sheet via `WKScriptMessageHandler`), CSV import (file picker via `WKUIDelegate`), and JS alert/confirm dialogs
 - `Parados/Views/GameListView.swift` — Main screen with game cards + Color hex extension
 - `Parados/Views/GameCardView.swift` — Card component with colored variant buttons; variants with `url` open in Safari via `https://game.ywesee.com/parados/`
 - `Parados/Views/GameWebView.swift` — WKWebView wrapper with gesture handling
@@ -60,6 +60,16 @@ Dark theme: background `#263238`, cards `#37474F`, gold accent `#FFD700`, button
 Apple guideline 4.7.4 requires an index of non-embedded games submitted with each review. All games are bundled in the binary; only 3 remote multiplayer variants load external URLs (`democracy_remote.html`, `rainbow_blackjack_remote.html`, `makalaina_remote.html` via `https://game.ywesee.com/parados/`). The index must be included in the **Review Notes** field in App Store Connect for every submission. Developer for all games: Think Ahead Games / ywesee GmbH.
 
 Apple guideline 2.1(a) requires the App Store description to list all games with descriptions. See README.md for the full game descriptions.
+
+## Swift–JS Bridge
+
+WKWebView doesn't natively support `<a download>` (blob URLs) or JS `alert()`/`confirm()`. The `WebViewBridge` class in `WebViewStore.swift` handles this:
+
+- **CSV Export**: Injected JS (`WKUserScript` at document start) intercepts `HTMLAnchorElement.click()` on blob download links and routes CSV content to Swift via `WKScriptMessageHandler`. Swift writes a temp file and presents `UIActivityViewController` (share sheet).
+- **CSV Import**: Setting `WKUIDelegate` on the webView enables `<input type="file">` to trigger the native iOS file picker. Used by kangaroo.html's replay feature.
+- **JS Alerts/Confirms**: Forwarded to native `UIAlertController` so games can show dialogs (e.g., "no data to export").
+
+The bridge operates at the WebView level — no HTML game files are modified, so "Spiele aktualisieren" (GitHub updates) continues to work.
 
 ## Troubleshooting
 

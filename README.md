@@ -14,6 +14,10 @@ Parados is a collection of 7 original board games playable on your iPhone and iP
 
 Three games offer optional remote multiplayer via Safari (`https://game.ywesee.com/parados/`) for cross-device PeerJS networking. If remote games show a black page in Safari, clear the Safari cache for `game.ywesee.com` (Settings > Safari > Advanced > Website Data).
 
+### CSV Export & Import
+
+Games with CSV export: all Kangaroo variants (DE/EN/JP/CN/UA), Frankenstein, Rainbow Blackjack (DE/EN/Remote), and MAKA LAINA (Local/Remote). Tapping the export button opens the iOS share sheet to save to Files, AirDrop, email, etc. Kangaroo (German) also supports CSV import for game replay.
+
 ## App Store Review Notes
 
 Apple guideline 4.7.4 requires an index of non-embedded games. All games are bundled in the app binary; only the remote multiplayer variants load from external URLs:

@@ -46,7 +46,7 @@ SwiftUI app with 2 screens, no third-party dependencies:
 
 - **GameListView** → NavigationStack with ScrollView of game cards. Kangaroo icon in top-right opens menu with "Spiele aktualisieren" (update from GitHub).
 - **GameWebView** → Full-screen WKWebView loading local HTML game files. Back button auto-hides after 3s. Swipe-from-left-edge gesture to dismiss.
-- **WebViewStore** → Singleton cache that keeps WKWebView instances alive per game, so game state is preserved when navigating back to the menu and returning.
+- **WebViewStore** → Singleton cache that keeps WKWebView instances alive per game, so game state is preserved when navigating back to the menu and returning. Cache is cleared after GitHub updates so refreshed HTML files take effect immediately.
 
 Key files:
 - `Parados/Models/GameInfo.swift` — Game metadata, variant definitions (with optional `url` for remote play via Safari), and list of all filenames for GitHub sync

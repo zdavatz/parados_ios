@@ -6,6 +6,10 @@ class WebViewStore: ObservableObject {
     private var webViews: [String: WKWebView] = [:]
     private let bridge = WebViewBridge()
 
+    func clearCache() {
+        webViews.removeAll()
+    }
+
     func webView(for filename: String) -> WKWebView {
         if let existing = webViews[filename] {
             return existing

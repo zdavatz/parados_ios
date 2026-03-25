@@ -10,7 +10,7 @@ Parados is a collection of 7 original board games playable on your iPhone and iP
 - **Democracy in Space** (2+ Players, Strategy) — Area majority game inspired by the Electoral College concept. Also available as a remote multiplayer variant.
 - **Frankenstein — Where's that green elbow?** (1–4 Players, Memory) — A quick memory game for ages 7 and up. Short, sweet, and surprisingly competitive.
 - **Rainbow Blackjack** (2 Players, Strategy) — Build coloured towers to reach 21. Available in German and English, with a remote multiplayer variant.
-- **MAKA LAINA** (2 Players, Strategy) — A fast-paced strategy game with constantly shifting disc placement. Also available as a remote multiplayer variant.
+- **MAKA LAINA** (2 Players, Strategy) — A fast-paced strategy game with constantly shifting disc placement. Rules modal with "Verstanden!" close button. Also available as a remote multiplayer variant.
 
 Three games offer optional remote multiplayer via Safari (`https://game.ywesee.com/parados/`) for cross-device PeerJS networking. If remote games show a black page in Safari, clear the Safari cache for `game.ywesee.com` (Settings > Safari > Advanced > Website Data).
 

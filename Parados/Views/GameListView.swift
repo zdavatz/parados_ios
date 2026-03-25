@@ -96,6 +96,9 @@ struct GameListView: View {
         Task {
             let updated = await repository.updateFromGithub()
             await MainActor.run {
+                if updated > 0 {
+                    WebViewStore.shared.clearCache()
+                }
                 isUpdating = false
                 withAnimation {
                     updateMessage = updated > 0

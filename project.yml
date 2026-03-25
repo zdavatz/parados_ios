@@ -14,6 +14,7 @@ targets:
   Parados:
     type: application
     platform: iOS
+    supportedDestinations: [iOS]
     sources:
       - path: Parados
         excludes:
@@ -29,3 +30,5 @@ targets:
       CURRENT_PROJECT_VERSION: "5"
       SWIFT_VERSION: "5.9"
       TARGETED_DEVICE_FAMILY: "1,2"
+      SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+      SUPPORTS_MACCATALYST: "NO"

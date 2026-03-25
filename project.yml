@@ -30,5 +30,5 @@ targets:
       CURRENT_PROJECT_VERSION: "5"
       SWIFT_VERSION: "5.9"
       TARGETED_DEVICE_FAMILY: "1,2"
-      SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+      SUPPORTED_PLATFORMS: "iphoneos"
       SUPPORTS_MACCATALYST: "NO"

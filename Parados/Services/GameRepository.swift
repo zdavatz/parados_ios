@@ -48,31 +48,58 @@ class GameRepository {
 
     func updateFromGithub() async -> Int {
         var updated = 0
+        // Start from the known set, then let the freshly-downloaded index.html
+        // ADD any newly-linked games, so a brand-new game is fully OTA (Walter,
+        // 2026-06-03): drop the file in the web repo + link it in index.html and
+        // the next "Spiele aktualisieren" pulls it — no app update needed.
+        var filenames = Set(GameInfo.allFilenames)
 
-        for filename in GameInfo.allFilenames {
-            guard let url = URL(string: "\(githubBaseURL)\(filename)") else { continue }
+        if let html = await downloadAndSave("index.html") {
+            updated += 1
+            filenames.remove("index.html")
+            for f in Self.linkedFiles(in: html) { filenames.insert(f) }
+        }
 
-            do {
-                var request = URLRequest(url: url)
-                request.timeoutInterval = 15
-                let (data, response) = try await URLSession.shared.data(for: request)
-
-                guard let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else { continue }
-
-                let destURL = gamesDirectory.appendingPathComponent(filename)
-                try data.write(to: destURL)
-                updated += 1
-            } catch {
-                continue
-            }
+        for filename in filenames {
+            if await downloadAndSave(filename) != nil { updated += 1 }
         }
 
         if updated > 0 {
             UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: lastUpdateKey)
         }
-
         return updated
+    }
+
+    /// Download one file from GitHub into the games dir. Returns its text body
+    /// on success (so index.html can be parsed for links), nil otherwise.
+    @discardableResult
+    private func downloadAndSave(_ filename: String) async -> String? {
+        guard let url = URL(string: "\(githubBaseURL)\(filename)") else { return nil }
+        do {
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 15
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse, http.statusCode == 200 else { return nil }
+            try data.write(to: gamesDirectory.appendingPathComponent(filename))
+            return String(data: data, encoding: .utf8)
+        } catch {
+            return nil
+        }
+    }
+
+    /// Local game/tool files an index.html links to: href="X.html" / "X.csv"
+    /// with no scheme and not absolute — so a new game linked on the website is
+    /// fetched without an app update.
+    static func linkedFiles(in html: String) -> [String] {
+        var out: [String] = []
+        let pattern = "href\\s*=\\s*\"([^\"]+\\.(?:html|csv))\""
+        guard let re = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive]) else { return out }
+        let ns = html as NSString
+        for m in re.matches(in: html, range: NSRange(location: 0, length: ns.length)) {
+            let s = ns.substring(with: m.range(at: 1))
+            if !s.contains("://") && !s.hasPrefix("/") && !s.hasPrefix("#") { out.append(s) }
+        }
+        return out
     }
 
     func lastUpdateTime() -> TimeInterval {

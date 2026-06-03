@@ -1,0 +1,133 @@
+name: Release to App Store
+
+# Fires when a semver tag `vX.Y.Z` is pushed.
+#
+#   # bump MARKETING_VERSION / build in Xcode (or let CI override), then:
+#   git tag v1.0.1 && git push origin v1.0.1
+#
+# This archives the iOS app, exports a signed App Store IPA and uploads it to
+# App Store Connect (TestFlight / ready to submit).  Signing is fully
+# automatic via an App Store Connect API key (.p8) — no certificates or
+# provisioning profiles to manage as secrets.
+#
+# Required repo secrets (set once via `gh secret set -R zdavatz/parados_ios`,
+# sourced from the App Store Connect API key in your Apple developer account):
+#   APPLE_API_KEY_P8     base64 of the AuthKey_<id>.p8 (App Store Connect API key)
+#   APPLE_API_KEY_ID     the key ID
+#   APPLE_API_ISSUER_ID  the issuer UUID
+#   APPLE_TEAM_ID        the 10-char team ID
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Marketing version to release (e.g. 1.0.1)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  appstore:
+    name: Archive + upload to App Store Connect
+    runs-on: macos-14
+    env:
+      APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+      APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+      APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      SCHEME: Parados
+      PROJECT: Parados.xcodeproj
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Resolve version + build number
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            version="${{ github.event.inputs.tag }}"
+          else
+            version="${GITHUB_REF#refs/tags/v}"
+          fi
+          # A monotonic build number so App Store Connect always accepts the
+          # upload, independent of MARKETING_VERSION re-tags.
+          build="$(date +%Y%m%d%H%M)"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "build=$build"     >> "$GITHUB_OUTPUT"
+          echo "Releasing $version (build $build)"
+
+      - name: Install App Store Connect API key
+        run: |
+          mkdir -p ~/.private_keys
+          echo "$APPLE_API_KEY_P8" | base64 --decode > ~/.private_keys/AuthKey_${APPLE_API_KEY_ID}.p8
+
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Parados.xcarchive" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.private_keys/AuthKey_${APPLE_API_KEY_ID}.p8 \
+            -authenticationKeyID "$APPLE_API_KEY_ID" \
+            -authenticationKeyIssuerID "$APPLE_API_ISSUER_ID" \
+            CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            MARKETING_VERSION="${{ steps.vars.outputs.version }}" \
+            CURRENT_PROJECT_VERSION="${{ steps.vars.outputs.build }}"
+
+      - name: Write ExportOptions.plist
+        run: |
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key><string>app-store</string>
+            <key>teamID</key><string>${APPLE_TEAM_ID}</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>uploadSymbols</key><true/>
+            <key>destination</key><string>export</string>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict>
+          </plist>
+          PLIST
+
+      - name: Export signed IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/Parados.xcarchive" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.private_keys/AuthKey_${APPLE_API_KEY_ID}.p8 \
+            -authenticationKeyID "$APPLE_API_KEY_ID" \
+            -authenticationKeyIssuerID "$APPLE_API_ISSUER_ID"
+
+      - name: Upload to App Store Connect
+        run: |
+          IPA="$(ls "$RUNNER_TEMP"/export/*.ipa | head -1)"
+          echo "Uploading $IPA"
+          xcrun altool --upload-app \
+            --type ios \
+            --file "$IPA" \
+            --apiKey "$APPLE_API_KEY_ID" \
+            --apiIssuer "$APPLE_API_ISSUER_ID"
+
+      - name: Upload IPA as build artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: ${{ runner.temp }}/export/*.ipa
+          if-no-files-found: ignore

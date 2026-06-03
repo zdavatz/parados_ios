@@ -34,7 +34,9 @@ permissions:
 jobs:
   appstore:
     name: Archive + upload to App Store Connect
-    runs-on: macos-14
+    # macos-15 ships Xcode 16, which can read the project's objectVersion 77
+    # (Xcode 16) format; macos-14 (Xcode 15) cannot.
+    runs-on: macos-15
     env:
       APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
       APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}

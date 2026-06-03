@@ -4,18 +4,19 @@ name: Release to App Store
 # release — the tag drives MARKETING_VERSION and the build number).
 #
 # Archives the iOS app, exports a signed App Store IPA and uploads it to App
-# Store Connect.  Modeled on the working movement_logger_ios workflow: the
-# Apple Distribution cert is imported into a temp keychain, then automatic
-# signing + -allowProvisioningUpdates provisions the App Store profile via the
-# App Store Connect API key.  (Pure automatic signing without the imported
-# cert fails on this account: it tries to mint a Development cert and hits the
-# certificate limit.)
+# Store Connect.  MANUAL App Store signing: the Apple Distribution cert is
+# imported into a temp keychain and the "Parados App Store CI" provisioning
+# profile is installed, then the archive/export sign against them directly.
+# (Automatic signing + -allowProvisioningUpdates failed on this account: it
+# tries to mint a Development cert and hits the certificate limit.)
 #
 # Required repo secrets (set via gh; sourced from ~/.apple + the ywesee p12
 # folder — never committed):
 #   APPLE_CERT_P12_BASE64    base64 of apple_distribution_ios.p12
 #   APPLE_CERT_PASSWORD      that .p12's password
-#   APPLE_API_KEY_P8_BASE64  base64 of the App Store Connect API key (.p8)
+#   IOS_APPSTORE_PROFILE     base64 of the IOS_APP_STORE .mobileprovision
+#                            (created via the ASC API for com.ywesee.parados)
+#   APPLE_API_KEY_P8_BASE64  base64 of the App Store Connect API key (.p8, for altool)
 #   APPLE_API_KEY_ID         the key ID
 #   APPLE_API_ISSUER_ID      the issuer UUID
 
@@ -100,10 +101,19 @@ jobs:
             > ~/.appstoreconnect/private_keys/AuthKey_${API_KEY_ID}.p8
           chmod 600 ~/.appstoreconnect/private_keys/AuthKey_${API_KEY_ID}.p8
 
-      - name: Archive
+      - name: Install App Store provisioning profile
         env:
-          API_KEY_ID:    ${{ secrets.APPLE_API_KEY_ID }}
-          API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+          PROFILE_BASE64: ${{ secrets.IOS_APPSTORE_PROFILE }}
+        run: |
+          PROFILE_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILE_DIR"
+          echo "$PROFILE_BASE64" | base64 --decode > "$PROFILE_DIR/parados_appstore.mobileprovision"
+
+      # MANUAL App Store signing with the imported Apple Distribution cert +
+      # the "Parados App Store CI" profile.  No -allowProvisioningUpdates, so
+      # Xcode never tries to mint a Development cert (which fails — the account
+      # is at its certificate limit).
+      - name: Archive
         run: |
           xcodebuild \
             -project "$PROJECT" \
@@ -111,10 +121,10 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath build/Parados.xcarchive \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${API_KEY_ID}.p8 \
-            -authenticationKeyID    "$API_KEY_ID" \
-            -authenticationKeyIssuerID "$API_ISSUER_ID" \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            CODE_SIGN_IDENTITY="Apple Distribution: ywesee GmbH (4B37356EGR)" \
+            PROVISIONING_PROFILE_SPECIFIER="Parados App Store CI" \
             archive
 
       - name: Write ExportOptions.plist
@@ -126,7 +136,12 @@ jobs:
           <dict>
               <key>method</key><string>app-store-connect</string>
               <key>teamID</key><string>${APPLE_TEAM_ID}</string>
-              <key>signingStyle</key><string>automatic</string>
+              <key>signingStyle</key><string>manual</string>
+              <key>signingCertificate</key><string>Apple Distribution</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>${BUNDLE_ID}</key><string>Parados App Store CI</string>
+              </dict>
               <key>uploadSymbols</key><true/>
               <key>destination</key><string>export</string>
           </dict>
@@ -134,18 +149,11 @@ jobs:
           PLIST
 
       - name: Export IPA
-        env:
-          API_KEY_ID:    ${{ secrets.APPLE_API_KEY_ID }}
-          API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
         run: |
           xcodebuild -exportArchive \
             -archivePath build/Parados.xcarchive \
             -exportPath build/export \
-            -exportOptionsPlist build/ExportOptions.plist \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${API_KEY_ID}.p8 \
-            -authenticationKeyID    "$API_KEY_ID" \
-            -authenticationKeyIssuerID "$API_ISSUER_ID"
+            -exportOptionsPlist build/ExportOptions.plist
 
       - name: Upload to App Store Connect
         env:

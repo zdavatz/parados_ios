@@ -33,7 +33,7 @@ struct GameInfo: Identifiable {
         [
             GameInfo(
                 filename: "kangaroo.html",
-                title: "DUK — The Impatient Kangaroo",
+                title: "TIK — The Impatient Kangaroo",
                 players: "1 Player · Puzzle",
                 description: "The plan: to create a 21st century successor to the super-hit solo puzzle game Rushhour. Many players think that hopping through the outback collecting goodies is more fun than trying to shove your way through traffic? Another advantage — thanks to the program, there's all kinds of different ways to play:-)",
                 variants: [
@@ -101,11 +101,13 @@ struct GameInfo: Identifiable {
         "kangaroo.html", "kangaroo_en.html", "kangaroo_jp.html",
         "kangaroo_cn.html", "kangaroo_ua.html",
         "capovolto.html",
-        "divided_loyalties.html",
-        "democracy.html", "democracy_remote.html",
+        "divided_loyalties.html", "divided_loyalties_en.html",
+        "divided_loyalties_starting_positions.csv",
+        "democracy.html", "democracy_en.html", "democracy_remote.html",
         "frankenstein.html",
         "rainbow_blackjack.html", "rainbow_blackjack_en.html",
         "rainbow_blackjack_remote.html",
-        "makalaina.html", "makalaina_remote.html"
+        "makalaina.html", "makalaina_remote.html",
+        "startpositionen.html"
     ]
 }
